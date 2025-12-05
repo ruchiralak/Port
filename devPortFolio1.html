@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ruchira Lakshan</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- AOS (Animate on Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- Custom CSS for animations and theme -->
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #0a0a1a;
+        color: #e0e0e0;
+      }
+
+      /* Custom Neon Glow Effects */
+      .neon-glow-button {
+        transition: all 0.3s ease;
+        box-shadow: 0 0 5px rgba(0, 190, 255, 0.5),
+          0 0 15px rgba(0, 190, 255, 0.3);
+      }
+      .neon-glow-button:hover {
+        box-shadow: 0 0 10px rgba(0, 190, 255, 0.8),
+          0 0 25px rgba(0, 190, 255, 0.6), 0 0 50px rgba(0, 190, 255, 0.3);
+        transform: translateY(-3px);
+      }
+      .neon-text-cyan {
+        text-shadow: 0 0 5px #00d1ff, 0 0 10px #00d1ff, 0 0 15px #00d1ff;
+      }
+      .neon-text-purple {
+        text-shadow: 0 0 5px #8a2be2, 0 0 10px #8a2be2, 0 0 15px #8a2be2;
+      }
+
+      /* Hero Section Role Pulse Animation */
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          text-shadow: 0 0 7px rgba(0, 209, 255, 0.7);
+        }
+        50% {
+          transform: scale(1.05);
+          text-shadow: 0 0 15px rgba(0, 209, 255, 1),
+            0 0 25px rgba(0, 209, 255, 0.7);
+        }
+      }
+      .role-pulse {
+        display: inline-block;
+        animation: pulse 3s infinite;
+      }
+      /* Staggered animation delay for roles */
+      .role-1 {
+        animation-delay: 0s;
+      }
+      .role-2 {
+        animation-delay: 1s;
+      }
+      .role-3 {
+        animation-delay: 2s;
+      }
+
+      /* Animated Typing Cursor */
+      .typed-cursor {
+        opacity: 1;
+        animation: blink 0.7s infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* Section dividers */
+      .section-divider {
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #00c3ff, transparent);
+        margin: 4rem auto;
+        width: 50%;
+      }
+
+      /* Skill Card Hover Effect */
+      .skill-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .skill-card:hover {
+        transform: scale(1.05) translateY(-5px);
+        box-shadow: 0 0 15px rgba(138, 43, 226, 0.5),
+          0 0 30px rgba(138, 43, 226, 0.3);
+      }
+
+      /* Project Card Hover Effect */
+      .project-card {
+        overflow: hidden;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.5s ease;
+      }
+      .project-card:hover .project-overlay {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .project-card img {
+        transition: transform 0.5s ease;
+      }
+      .project-card:hover img {
+        transform: scale(1.1);
+      }
+      .project-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 30, 0.85);
+        backdrop-filter: blur(5px);
+        color: white;
+        padding: 1.5rem;
+        opacity: 0;
+        transform: translateY(100%);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      /* Social Icon Hover */
+      .social-icon {
+        transition: all 0.3s ease;
+      }
+      .social-icon:hover {
+        transform: scale(1.2) translateY(-3px);
+        filter: drop-shadow(0 0 8px #00c3ff);
+      }
+
+      /* Particle.js container */
+      #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+
+      .slide {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+      .slide.active {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body class="overflow-x-hidden">
+    <!-- Particle.js background container -->
+    <div id="particles-js"></div>
+
+    <!-- Header & Navigation -->
+    <header
+      class="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-lg"
+    >
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a href="#" class="text-2xl font-bold neon-text-cyan">RL</a>
+        <nav class="hidden md:flex space-x-8">
+          <a
+            href="#about"
+            class="hover:text-cyan-400 transition-colors duration-300"
+            >About</a
+          >
+          <a
+            href="#skills"
+            class="hover:text-cyan-400 transition-colors duration-300"
+            >Skills</a
+          >
+          <a
+            href="#projects"
+            class="hover:text-cyan-400 transition-colors duration-300"
+            >Projects</a
+          >
+          <a
+            href="#contact"
+            class="hover:text-cyan-400 transition-colors duration-300"
+            >Contact</a
+          >
+        </nav>
+        <a
+          href="#contact"
+          class="hidden md:block bg-cyan-500 text-black py-2 px-4 rounded-lg font-semibold neon-glow-button"
+        >
+          Hire Me
+        </a>
+        <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
+      </div>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+        <a href="#about" class="block py-2 hover:text-cyan-400">About</a>
+        <a href="#skills" class="block py-2 hover:text-cyan-400">Skills</a>
+        <a href="#projects" class="block py-2 hover:text-cyan-400">Projects</a>
+        <a href="#contact" class="block py-2 hover:text-cyan-400">Contact</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section
+        id="home"
+        class="h-screen flex items-center justify-center text-center relative overflow-hidden"
+      >
+        <div class="z-10" data-aos="zoom-in" data-aos-duration="1000">
+          <h1 class="text-5xl md:text-7xl font-bold mb-4">Ruchira Lakshan</h1>
+          <div class="text-xl md:text-2xl font-light mb-6">
+            <span id="typed-text" class="text-cyan-300"></span
+            ><span class="typed-cursor">|</span>
+          </div>
+          <div
+            class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 text-lg font-medium text-purple-300 mb-8"
+          >
+            <span class="role-1 role-pulse">Fullstack Developer</span>
+            <span class="hidden md:inline">·</span>
+            <span class="role-2 role-pulse">Android Developer</span>
+            <span class="hidden md:inline">·</span>
+            <span class="role-3 role-pulse">Cross Platform Developer</span>
+          </div>
+          <a
+            href="#projects"
+            class="bg-cyan-500 text-black py-3 px-8 rounded-lg text-lg font-bold neon-glow-button"
+          >
+            View My Work
+          </a>
+        </div>
+      </section>
+
+      <!-- About Me Section -->
+      <section id="about" class="py-20">
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-4xl font-bold text-center mb-12 neon-text-purple"
+            data-aos="fade-up"
+          >
+            About Me
+          </h2>
+          <div
+            class="flex flex-col lg:flex-row items-center justify-center gap-12"
+          >
+            <div data-aos="fade-right" data-aos-duration="1000">
+              <img
+                src="Assets/profile.jpg"
+                alt="Ruchira Lakshan"
+                class="rounded-full w-64 h-64 lg:w-80 lg:h-80 object-cover border-4 border-cyan-500 shadow-lg shadow-cyan-500/20"
+              />
+            </div>
+            <div
+              class="lg:w-1/2 text-center lg:text-left"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+            >
+              <p class="text-lg leading-relaxed mb-8">
+                I'm a passionate developer with a knack for building modern,
+                responsive, and user-friendly web and mobile applications. With
+                a strong foundation in both frontend and backend technologies, I
+                enjoy bringing ideas to life from concept to deployment. I'm a
+                lifelong learner, always excited to explore new technologies and
+                improve my craft.
+              </p>
+              <div class="grid md:grid-cols-2 gap-6">
+                <!-- Experience Card -->
+                <div
+                  class="bg-gray-900/50 p-6 rounded-lg border border-cyan-700/50 hover:shadow-cyan-500/20 shadow-lg transition-shadow duration-300"
+                >
+                  <h3 class="text-2xl font-semibold text-cyan-300 mb-4">
+                    Experience
+                  </h3>
+                  <div class="relative pl-4">
+                    <div
+                      class="absolute -left-1 top-2 h-3 w-3 rounded-full bg-cyan-400"
+                    ></div>
+                    <h4 class="font-bold text-lg">IT Technician</h4>
+                    <p class="text-sm text-gray-400 mb-1">
+                      A+ Company | 2021 - 2022
+                    </p>
+                    <p class="text-gray-300 text-sm">
+                      Provide technical support, troubleshoot hardware/software
+                      issues, and ensure smooth operation of the institute’s IT
+                      systems.
+                    </p>
+                  </div>
+                  <div class="relative pl-4">
+                    <div
+                      class="absolute -left-1 top-2 h-3 w-3 rounded-full bg-cyan-400"
+                    ></div>
+                    <h4 class="font-bold text-lg">Video Editor</h4>
+                    <p class="text-sm text-gray-400 mb-1">
+                      A+ Company | 2021 - 2022
+                    </p>
+                    <p class="text-gray-300 text-sm">
+                      Edit and produce engaging video content by assembling raw
+                      footage, adding effects, and ensuring professional-quality
+                      outputs.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Education Card -->
+                <div
+                  class="bg-gray-900/50 p-6 rounded-lg border border-purple-700/50 hover:shadow-purple-500/20 shadow-lg transition-shadow duration-300"
+                >
+                  <h3 class="text-2xl font-semibold text-purple-300 mb-4">
+                    Education
+                  </h3>
+                  <div class="relative pl-4">
+                    <div
+                      class="absolute -left-1 top-2 h-3 w-3 rounded-full bg-purple-400"
+                    ></div>
+                    <h4 class="font-bold text-lg">
+                      BSE.(Hons) Software Engineering
+                    </h4>
+                    <p class="text-sm text-gray-400 mb-1">
+                      The Open University Sri Lanka | 2022 - Present
+                    </p>
+                    <p class="text-gray-300 text-sm">
+                      Focus on software engineering & AI.
+                    </p>
+                  </div>
+                  <div class="relative pl-4">
+                    <div
+                      class="absolute -left-1 top-2 h-3 w-3 rounded-full bg-purple-400"
+                    ></div>
+                    <h4 class="font-bold text-lg">MERN Stack Certificate</h4>
+                    <p class="text-sm text-gray-400 mb-1">
+                      ACPT - Acedemy Of Computer programming and Training : 2024
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section-divider" data-aos="zoom-in"></div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="py-20">
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-4xl font-bold text-center mb-12 neon-text-purple"
+            data-aos="fade-up"
+          >
+            My Tech Stack
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Frontend -->
+            <div data-aos="fade-up" data-aos-delay="100">
+              <h3 class="text-2xl font-bold text-center text-cyan-300 mb-6">
+                Frontend
+              </h3>
+              <div class="space-y-4">
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  JavaScript (ES6+)
+                </div>
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  React & Next.js
+                </div>
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  HTML5 & CSS3
+                </div>
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  Tailwind CSS
+                </div>
+              </div>
+            </div>
+            <!-- Backend -->
+            <div data-aos="fade-up" data-aos-delay="200">
+              <h3 class="text-2xl font-bold text-center text-cyan-300 mb-6">
+                Backend
+              </h3>
+              <div class="space-y-4">
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  Node.js & Express
+                </div>
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  Python
+                </div>
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  REST APIs
+                </div>
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  MSSQL & MongoDB
+                </div>
+              </div>
+            </div>
+            <!-- Mobile Development -->
+            <div data-aos="fade-up" data-aos-delay="300">
+              <h3 class="text-2xl font-bold text-center text-cyan-300 mb-6">
+                Mobile
+              </h3>
+              <div class="space-y-4">
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  React Native
+                </div>
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  Java (Android Studio)
+                </div>
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  Flutter
+                </div>
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  Firebase
+                </div>
+              </div>
+            </div>
+            <!-- Tools & Platforms -->
+            <div data-aos="fade-up" data-aos-delay="400">
+              <h3 class="text-2xl font-bold text-center text-cyan-300 mb-6">
+                Tools & Platforms
+              </h3>
+              <div class="space-y-4">
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  Git & GitHub
+                </div>
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  Docker
+                </div>
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  Streamlit & Vercel
+                </div>
+                <div
+                  class="skill-card bg-gray-900/50 p-4 rounded-lg text-center"
+                >
+                  PostMan
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section-divider" data-aos="zoom-in"></div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="py-20">
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-4xl font-bold text-center mb-12 neon-text-purple"
+            data-aos="fade-up"
+          >
+            My Projects
+          </h2>
+          <!-- Responsive Grid for Project Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <div
+              class="project-card bg-gray-800 rounded-lg shadow-lg"
+              data-aos="zoom-in-up"
+            >
+              <div class="relative overflow-hidden rounded-t-lg h-64">
+                <!-- Slideshow container -->
+                <div class="slides h-full w-full">
+                  <img
+                    src="Assets/projects/aayu3.png"
+                    alt="Project Image 1"
+                    class="absolute inset-0 w-full h-full object-cover slide active"
+                  />
+                  <img
+                    src="Assets/projects/aayu.png"
+                    alt="Project Image 1"
+                    class="absolute inset-0 w-full h-full object-cover slide active"
+                  />
+                  <img
+                    src="Assets/projects/aayu1.png"
+                    alt="Project Image 2"
+                    class="absolute inset-0 w-full h-full object-cover slide"
+                  />
+                  <img
+                    src="Assets/projects/aayu2.png"
+                    alt="Project Image 3"
+                    class="absolute inset-0 w-full h-full object-cover slide"
+                  />
+                </div>
+              </div>
+              <div class="project-content">
+                <h3 class="text-2xl font-bold mb-2">
+                  Project Aayu: No-Code Health Prediction(Research Project)
+                </h3>
+                <p class="mb-4 text-base leading-relaxed flex-grow">
+                  A health prediction framework using machine learning for
+                  non-programmers, enabling easy model training and deployment.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="bg-cyan-800 text-cyan-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >Python</span
+                  >
+                  <span
+                    class="bg-purple-800 text-purple-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >Streamlit</span
+                  >
+                  <span
+                    class="bg-gray-700 text-gray-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >Machine Learning</span
+                  >
+                </div>
+                <div class="flex space-x-4 mt-auto">
+                  <a
+                    href="#"
+                    class="bg-cyan-600 px-4 py-2 rounded-lg hover:bg-cyan-500 transition-colors font-semibold"
+                    >Live Demo</a
+                  >
+                  <a
+                    href="https://github.com/ruchiralak/Project-Aayu-.git"
+                    class="bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors font-semibold"
+                    >GitHub</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div
+              class="project-card bg-gray-800 rounded-lg shadow-lg"
+              data-aos="zoom-in-up"
+              data-aos-delay="200"
+            >
+              <div class="relative overflow-hidden rounded-t-lg h-64">
+                <!-- Slideshow container -->
+                <div class="slides h-full w-full">
+                  <img
+                    src="Assets/projects/ihd1.png"
+                    alt="Project Image 1"
+                    class="absolute inset-0 w-full h-full object-cover slide active"
+                  />
+                  <img
+                    src="Assets/projects/ihd.jpeg"
+                    alt="Project Image 2"
+                    class="absolute inset-0 w-full h-full object-cover slide"
+                  />
+                </div>
+              </div>
+              <div class="project-content">
+                <h3 class="text-2xl font-bold mb-2">
+                  IHD Risk Prediction Web App(Research Project)
+                </h3>
+                <p class="mb-4 text-base leading-relaxed flex-grow">
+                  A web app that predicts Ischemic Heart Disease (IHD) risk
+                  using lifestyle and symptom data.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="bg-blue-800 text-blue-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >Python</span
+                  >
+                  <span
+                    class="bg-yellow-800 text-yellow-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >Flask</span
+                  >
+                  <span
+                    class="bg-green-800 text-green-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >Machine Learning</span
+                  >
+                </div>
+                <div class="flex space-x-4 mt-auto">
+                  <a
+                    href="#"
+                    class="bg-cyan-600 px-4 py-2 rounded-lg hover:bg-cyan-500 transition-colors font-semibold"
+                    >Live Demo</a
+                  >
+                  <a
+                    href="https://github.com/ruchiralak/IHD_prediction.git"
+                    class="bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors font-semibold"
+                    >GitHub</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div
+              class="project-card bg-gray-800 rounded-lg shadow-lg"
+              data-aos="zoom-in-up"
+              data-aos-delay="400"
+            >
+              <div class="relative overflow-hidden rounded-t-lg h-64">
+                <!-- Slideshow container -->
+                <div class="slides h-full w-full">
+                  <img
+                    src="Assets/projects/jp.png"
+                    alt="Project Image 1"
+                    class="absolute inset-0 w-full h-full object-cover slide active"
+                  />
+                  <img
+                    src="Assets/projects/JP-h.png"
+                    alt="Project Image 2"
+                    class="absolute inset-0 w-full h-full object-cover slide"
+                  />
+                  <img
+                    src="Assets/projects/js-d.png"
+                    alt="Project Image 3"
+                    class="absolute inset-0 w-full h-full object-cover slide"
+                  />
+                  <img
+                    src="Assets/projects/js-st.png"
+                    alt="Project Image 3"
+                    class="absolute inset-0 w-full h-full object-cover slide"
+                  />
+                  <img
+                    src="Assets/projects/emp-d.png"
+                    alt="Project Image 3"
+                    class="absolute inset-0 w-full h-full object-cover slide"
+                  />
+                  <img
+                    src="Assets/projects/emp-app.png"
+                    alt="Project Image 3"
+                    class="absolute inset-0 w-full h-full object-cover slide"
+                  />
+                </div>
+              </div>
+              <div class="project-content">
+                <h3 class="text-2xl font-bold mb-2">JP-Platform</h3>
+                <p class="mb-4 text-base leading-relaxed flex-grow">
+                  Job Posting platform where employers can post jobs and job
+                  seekers can apply for a job under the supervision of Admin
+                  pannel approval.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="bg-red-800 text-red-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >MongoDB</span
+                  >
+                  <span
+                    class="bg-sky-800 text-sky-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >Express Js</span
+                  >
+                  <span
+                    class="bg-yellow-700 text-yellow-100 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >Node Js</span
+                  >
+                  <span
+                    class="bg-sky-800 text-sky-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >React Js</span
+                  >
+                </div>
+                <div class="flex space-x-4 mt-auto">
+                  <a
+                    href="#"
+                    class="bg-cyan-600 px-4 py-2 rounded-lg hover:bg-cyan-500 transition-colors font-semibold"
+                    >Live Demo</a
+                  >
+                  <a
+                    href="#"
+                    class="bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors font-semibold"
+                    >GitHub</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div
+              class="project-card bg-gray-800 rounded-lg shadow-lg"
+              data-aos="zoom-in-up"
+            >
+              <div class="relative overflow-hidden rounded-t-lg h-64">
+                <!-- Slideshow container -->
+                <div class="slides h-full w-full">
+                  <img
+                    src="Assets/projects/local.png"
+                    alt="Project Image 1"
+                    class="absolute inset-0 w-full h-full object-cover slide active"
+                  />
+                </div>
+              </div>
+              <div class="project-content">
+                <h3 class="text-2xl font-bold mb-2">
+                  LocalLift: Your Ultimate Sri Lankan Tourist Guide
+                </h3>
+                <p class="mb-4 text-base leading-relaxed flex-grow">
+                  LocalLift is an innovative and user-friendly Android
+                  application designed to enhance your travel experience in Sri
+                  Lanka. Whether you're a tourist exploring the country for the
+                  first time or a seasoned traveler seeking hidden gems,
+                  LocalLift has got you covered.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="bg-indigo-800 text-indigo-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >JAVA</span
+                  >
+                  <span
+                    class="bg-blue-800 text-blue-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >Android Studio</span
+                  >
+                  <span
+                    class="bg-pink-800 text-pink-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >SQL-Lite</span
+                  >
+                </div>
+                <div class="flex space-x-4 mt-auto">
+                  <a
+                    href="#"
+                    class="bg-cyan-600 px-4 py-2 rounded-lg hover:bg-cyan-500 transition-colors font-semibold"
+                    >Live Demo</a
+                  >
+                  <a
+                    href="https://github.com/ruchiralak/LocalLift-Apk.git"
+                    class="bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors font-semibold"
+                    >GitHub</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div
+              class="project-card bg-gray-800 rounded-lg shadow-lg"
+              data-aos="zoom-in-up"
+              data-aos-delay="200"
+            >
+              <div class="relative overflow-hidden rounded-t-lg h-64">
+                <!-- Slideshow container -->
+                <div class="slides h-full w-full">
+                  <img
+                    src="Assets/projects/prms.png"
+                    alt="Project Image 1"
+                    class="absolute inset-0 w-full h-full object-cover slide active"
+                  />
+                  <img
+                    src="Assets/projects/aayu1.png"
+                    alt="Project Image 2"
+                    class="absolute inset-0 w-full h-full object-cover slide"
+                  />
+                  <img
+                    src="Assets/projects/aayu2.png"
+                    alt="Project Image 3"
+                    class="absolute inset-0 w-full h-full object-cover slide"
+                  />
+                </div>
+              </div>
+              <div class="project-content">
+                <h3 class="text-2xl font-bold mb-2">
+                  Patient Record Management System
+                </h3>
+                <p class="mb-4 text-base leading-relaxed flex-grow">
+                  The Patient Record Management System (PRMS) is a comprehensive
+                  software solution developed using the Object-Oriented
+                  Programming (OOP) paradigm in Java. This system is designed to
+                  efficiently manage and maintain patient records within a
+                  healthcare facility. PRMS incorporates a MySQL database to
+                  store and organize the patient data securely and effectively.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="bg-orange-800 text-orange-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >JAVA</span
+                  >
+                  <span
+                    class="bg-green-800 text-green-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >Java Swing</span
+                  >
+                  <span
+                    class="bg-red-800 text-red-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >Sql</span
+                  >
+                </div>
+                <div class="flex space-x-4 mt-auto">
+                  <a
+                    href="#"
+                    class="bg-cyan-600 px-4 py-2 rounded-lg hover:bg-cyan-500 transition-colors font-semibold"
+                    >Live Demo</a
+                  >
+                  <a
+                    href="https://github.com/TrojanSquadOrg/Patient_Record_Management_System.git"
+                    class="bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors font-semibold"
+                    >GitHub</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div
+              class="project-card bg-gray-800 rounded-lg shadow-lg"
+              data-aos="zoom-in-up"
+              data-aos-delay="400"
+            >
+              <div class="relative overflow-hidden rounded-t-lg h-64">
+                <!-- Slideshow container -->
+                <div class="slides h-full w-full">
+                  <img
+                    src="Assets/projects/airline.png"
+                    alt="Project Image 1"
+                    class="absolute inset-0 w-full h-full object-cover slide active"
+                  />
+                  <img
+                    src="Assets/projects/aayu1.png"
+                    alt="Project Image 2"
+                    class="absolute inset-0 w-full h-full object-cover slide"
+                  />
+                  <img
+                    src="Assets/projects/aayu2.png"
+                    alt="Project Image 3"
+                    class="absolute inset-0 w-full h-full object-cover slide"
+                  />
+                </div>
+              </div>
+              <div class="project-content">
+                <h3 class="text-2xl font-bold mb-2">
+                  Airline Ticket Booking System
+                </h3>
+                <p class="mb-4 text-base leading-relaxed flex-grow">
+                  ✈️ Airline Ticket Booking System This Airline Ticket Booking
+                  System is a Java Swing-based desktop application designed to
+                  streamline the process of flight scheduling, seat booking, and
+                  passenger management. The system connects to a MySQL database
+                  using JDBC and includes a user-friendly GUI with layered
+                  architecture for easy maintenance and expansion.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="bg-teal-800 text-teal-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >JAVA</span
+                  >
+                  <span
+                    class="bg-lime-800 text-lime-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >Java Swing</span
+                  >
+                  <span
+                    class="bg-blue-900 text-blue-200 text-xs font-semibold px-2.5 py-1 rounded-full"
+                    >SQL</span
+                  >
+                </div>
+                <div class="flex space-x-4 mt-auto">
+                  <a
+                    href="#"
+                    class="bg-cyan-600 px-4 py-2 rounded-lg hover:bg-cyan-500 transition-colors font-semibold"
+                    >Live Demo</a
+                  >
+                  <a
+                    href="https://github.com/ruchiralak/AirlineTicketBookingSystem.git"
+                    class="bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors font-semibold"
+                    >GitHub</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section-divider" data-aos="zoom-in"></div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-4xl font-bold text-center mb-4 neon-text-purple"
+            data-aos="fade-up"
+          >
+            Get In Touch
+          </h2>
+          <p
+            class="text-center text-lg max-w-2xl mx-auto mb-12"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            Have a project in mind or just want to say hi? Feel free to send me
+            a message. I'm always open to new opportunities and collaborations.
+          </p>
+          <!-- Contact Section -->
+
+          <form
+            id="contact-form"
+            class="max-w-xl mx-auto"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="mb-4">
+              <label for="firstName" class="block mb-2">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                class="w-full p-3 bg-gray-900/70 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label for="lastName" class="block mb-2">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                class="w-full p-3 bg-gray-900/70 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label for="email" class="block mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full p-3 bg-gray-900/70 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label for="phone" class="block mb-2">Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                class="w-full p-3 bg-gray-900/70 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
+              />
+            </div>
+            <div class="mb-4">
+              <label for="message" class="block mb-2">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                class="w-full p-3 bg-gray-900/70 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
+                required
+              ></textarea>
+            </div>
+
+            <div class="text-center">
+              <button
+                type="submit"
+                id="send-button"
+                class="bg-cyan-500 text-black py-3 px-8 rounded-lg text-lg font-bold neon-glow-button"
+              >
+                Send Message
+              </button>
+            </div>
+            <p id="status-message" class="text-center mt-4"></p>
+          </form>
+          <div
+            class="text-center mt-12"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <h3 class="text-xl mb-4">Find me on</h3>
+            <div class="flex justify-center space-x-8">
+              <a href="https://github.com/ruchiralak" class="social-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ruchira-lakshan/"
+                class="social-icon"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900/50 py-6">
+      <div class="container mx-auto px-6 text-center text-gray-400">
+        <p>&copy; 2025 Ruchira Lakshan. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- AOS (Animate on Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- EmailJS -->
+    <script
+      type="text/javascript"
+      src="https://cdn.emailjs.com/dist/email.min.js"
+    ></script>
+    <!-- Custom JS -->
+    <script>
+      const form = document.getElementById("contact-form");
+      const statusMessage = document.getElementById("status-message");
+      const sendButton = document.getElementById("send-button");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        sendButton.textContent = "Sending...";
+
+        emailjs.sendForm("service_n9bf2pc", "template_udmcfb9", this).then(
+          () => {
+            statusMessage.textContent = "Message sent successfully!";
+            statusMessage.className = "text-green-500 text-center mt-4";
+            form.reset();
+            sendButton.textContent = "Send Message";
+          },
+          (error) => {
+            console.error("Failed to send email:", error);
+            statusMessage.textContent =
+              "Something went wrong, please try again later.";
+            statusMessage.className = "text-red-500 text-center mt-4";
+            sendButton.textContent = "Send Message";
+          }
+        );
+      });
+      (function () {
+        emailjs.init("0b4ao60cvGlK0kFCu"); //  EmailJS public key
+      })();
+
+      const slides = document.querySelectorAll(".slide");
+      let current = 0;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle("active", i === index);
+        });
+      }
+
+      function nextSlide() {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+      }
+
+      // Show first slide
+      showSlide(current);
+
+      // Auto-loop every 3 seconds
+      setInterval(nextSlide, 3000);
+      // Initialize AOS
+      AOS.init({
+        once: true, // whether animation should happen only once - while scrolling down
+        duration: 800,
+      });
+
+      // Mobile Menu Toggle
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Typing animation
+      const typedTextSpan = document.getElementById("typed-text");
+      const textArray = [
+        "Hi, I’m Ruchira Lakshan.",
+        "I build modern web & mobile solutions.",
+      ];
+      const typingDelay = 100;
+      const erasingDelay = 50;
+      const newTextDelay = 2000;
+      let textArrayIndex = 0;
+      let charIndex = 0;
+
+      function type() {
+        if (charIndex < textArray[textArrayIndex].length) {
+          typedTextSpan.textContent +=
+            textArray[textArrayIndex].charAt(charIndex);
+          charIndex++;
+          setTimeout(type, typingDelay);
+        } else {
+          setTimeout(erase, newTextDelay);
+        }
+      }
+
+      function erase() {
+        if (charIndex > 0) {
+          typedTextSpan.textContent = textArray[textArrayIndex].substring(
+            0,
+            charIndex - 1
+          );
+          charIndex--;
+          setTimeout(erase, erasingDelay);
+        } else {
+          textArrayIndex++;
+          if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+          setTimeout(type, typingDelay + 1100);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        if (textArray.length) setTimeout(type, newTextDelay + 250);
+      });
+
+      //slideshow
+      // Slideshow logic for all project cards
+      document.addEventListener("DOMContentLoaded", function () {
+        // Select all slideshow containers
+        const slideshows = document.querySelectorAll(".slides");
+
+        // Iterate over each slideshow container
+        slideshows.forEach((slideshow) => {
+          let slides = slideshow.querySelectorAll(".slide");
+          let currentSlide = 0;
+
+          // Function to show a specific slide
+          function showSlide(index) {
+            slides.forEach((slide, i) => {
+              slide.classList.remove("active");
+              if (i === index) {
+                slide.classList.add("active");
+              }
+            });
+          }
+
+          // Change slide every 3 seconds for this specific slideshow
+          setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+          }, 3000);
+        });
+      });
+
+      // particles.js config
+      particlesJS("particles-js", {
+        particles: {
+          number: {
+            value: 80,
+            density: {
+              enable: true,
+              value_area: 800,
+            },
+          },
+          color: {
+            value: ["#00d1ff", "#8a2be2", "#ffffff"],
+          },
+          shape: {
+            type: "circle",
+          },
+          opacity: {
+            value: 0.5,
+            random: false,
+            anim: {
+              enable: false,
+            },
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: {
+              enable: false,
+            },
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#3d3d5c",
+            opacity: 0.4,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: false,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: {
+              enable: false,
+              rotateX: 600,
+              rotateY: 1200,
+            },
+          },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "grab",
+            },
+            onclick: {
+              enable: true,
+              mode: "push",
+            },
+            resize: true,
+          },
+          modes: {
+            grab: {
+              distance: 140,
+              line_opacity: 1,
+            },
+            bubble: {
+              distance: 400,
+              size: 40,
+              duration: 2,
+              opacity: 8,
+              speed: 3,
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4,
+            },
+            push: {
+              particles_nb: 4,
+            },
+            remove: {
+              particles_nb: 2,
+            },
+          },
+        },
+        retina_detect: true,
+      });
+    </script>
+  </body>
+</html>
